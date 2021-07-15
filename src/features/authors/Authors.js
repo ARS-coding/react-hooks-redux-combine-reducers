@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 function Authors() {
   const authors = useSelector((rootState) => {
-    return rootState.authors.authors
+    return rootState.authors;
   });
 
   return (

@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 // Action Creators
 export const addAuthor = (author) => {
     return {
@@ -26,7 +28,17 @@ export default function authorsReducer(state = initialState, action) {
           (author) => author.id !== action.payload
         );
         return newAuthors;
-  
+
+        case "books/add":
+          const existingAuthor = state.find(
+            (author) => author.authorName === action.payload.authorName
+          );
+          if (existingAuthor) {
+            return state;
+          } else {
+            return [...state, { authorName: action.payload.authorName, id: uuid() }];
+          }
+
       default:
         return state;
     }
